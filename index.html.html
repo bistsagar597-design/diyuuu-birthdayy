@@ -1,0 +1,409 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Happiesttt Birthdayyyy Diyuuuuuuu 💙</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #dff3ff, #ffffff, #c9eaff);
+    font-family: Georgia, "Times New Roman", serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Floating hearts */
+.heart {
+    position: fixed;
+    color: #4da9d8;
+    font-size: 22px;
+    bottom: -30px;
+    animation: floatUp 7s linear infinite;
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.h1 { left: 10%; animation-delay: 0s; }
+.h2 { left: 30%; animation-delay: 2s; }
+.h3 { left: 70%; animation-delay: 1s; }
+.h4 { left: 90%; animation-delay: 3s; }
+
+@keyframes floatUp {
+    0% {
+        bottom: -30px;
+        opacity: 0;
+    }
+    20% {
+        opacity: 0.6;
+    }
+    100% {
+        bottom: 110%;
+        opacity: 0;
+        transform: translateX(30px) rotate(360deg);
+    }
+}
+
+.container {
+    width: 94%;
+    max-width: 600px;
+    text-align: center;
+}
+
+.heading {
+    color: #176b9d;
+    font-family: Arial, sans-serif;
+    font-size: 28px;
+    margin-bottom: 25px;
+}
+
+/* Envelope */
+.envelope {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    height: 300px;
+    margin: auto;
+}
+
+/* Letter - completely hidden behind envelope */
+.letter {
+    position: absolute;
+    width: 88%;
+    height: 250px;
+    left: 6%;
+    bottom: 20px;
+
+    background: white;
+    border: 2px solid #82c8e8;
+    border-radius: 8px;
+
+    padding: 22px;
+    overflow-y: auto;
+
+    transform: translateY(0);
+    transition: transform 1.2s ease;
+
+    z-index: 1;
+}
+
+/* Letter text */
+.letter h2 {
+    color: #12689b;
+    text-align: center;
+    font-size: 24px;
+    margin-top: 0;
+}
+
+.letter p {
+    color: #315c75;
+    font-size: 16px;
+    line-height: 1.7;
+    text-align: left;
+    margin: 10px 0;
+}
+
+.signature {
+    text-align: right;
+    color: #176b9d;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+/* Envelope body */
+.envelope-body {
+    position: absolute;
+    width: 100%;
+    height: 230px;
+    bottom: 0;
+    left: 0;
+
+    background: linear-gradient(145deg, #ffffff, #e4f6ff);
+    border: 3px solid #65b3da;
+    border-radius: 8px;
+
+    z-index: 3;
+    overflow: hidden;
+}
+
+/* Left and right folds */
+.envelope-body:before {
+    content: "";
+    position: absolute;
+    width: 75%;
+    height: 180px;
+    left: -25%;
+    bottom: -75px;
+
+    background: #d8f0fc;
+    border: 2px solid #8bc9e6;
+
+    transform: rotate(32deg);
+}
+
+.envelope-body:after {
+    content: "";
+    position: absolute;
+    width: 75%;
+    height: 180px;
+    right: -25%;
+    bottom: -75px;
+
+    background: #d8f0fc;
+    border: 2px solid #8bc9e6;
+
+    transform: rotate(-32deg);
+}
+
+/* Top flap */
+.flap {
+    position: absolute;
+    width: 100%;
+    height: 190px;
+    top: 70px;
+    left: 0;
+
+    background: linear-gradient(145deg, #eaf8ff, #ffffff);
+
+    clip-path: polygon(
+        0 0,
+        100% 0,
+        50% 100%
+    );
+
+    border-top: 3px solid #65b3da;
+
+    z-index: 5;
+
+    transform-origin: top center;
+    transition: transform 1.1s ease;
+}
+
+/* Heart seal */
+.seal {
+    position: absolute;
+    width: 58px;
+    height: 58px;
+
+    left: 50%;
+    top: 155px;
+
+    transform: translateX(-50%);
+
+    border-radius: 50%;
+    background: white;
+    border: 3px solid #62afd8;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 25px;
+
+    z-index: 6;
+
+    transition: opacity 0.4s ease;
+}
+
+/* OPEN STATE */
+.envelope.open .flap {
+    transform: rotateX(180deg);
+    z-index: 2;
+}
+
+.envelope.open .seal {
+    opacity: 0;
+}
+
+.envelope.open .letter {
+    transform: translateY(-135px);
+    z-index: 4;
+}
+
+/* Button */
+.open-button {
+    margin-top: 30px;
+
+    padding: 14px 30px;
+
+    border: none;
+    border-radius: 30px;
+
+    background: linear-gradient(135deg, #2185bb, #63bee8);
+
+    color: white;
+
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+
+    cursor: pointer;
+
+    box-shadow: 0 6px 18px rgba(35, 120, 165, 0.3);
+}
+
+.open-button:hover {
+    transform: translateY(-2px);
+}
+
+.hint {
+    margin-top: 12px;
+    color: #5a8aa3;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+
+    .heading {
+        font-size: 23px;
+    }
+
+    .envelope {
+        height: 280px;
+    }
+
+    .letter {
+        height: 230px;
+        padding: 18px;
+    }
+
+    .letter h2 {
+        font-size: 21px;
+    }
+
+    .letter p {
+        font-size: 14px;
+        line-height: 1.6;
+    }
+
+    .envelope-body {
+        height: 215px;
+    }
+
+    .flap {
+        height: 175px;
+        top: 65px;
+    }
+
+    .seal {
+        top: 140px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="heart h1">♡</div>
+<div class="heart h2">♥</div>
+<div class="heart h3">♡</div>
+<div class="heart h4">♥</div>
+
+<div class="container">
+
+    <div class="heading">
+        💙 A Little Birthday Surprise For You 🤍
+    </div>
+
+    <div class="envelope" id="envelope">
+
+        <!-- LETTER -->
+        <div class="letter">
+
+            <h2>Happy Birthday, Diyuuuuuuu! </h2>
+
+            <p>
+                Happy Birthday to the most adorable girl ever! 
+                I hope your day is filled with the biggest smiles,
+                warmest hugs, lots of love and all the happiness you
+                deserve.
+            </p>
+
+            <p>
+                Diyuuuuuuu, you are genuinely so special to me.
+                Your smile can make an ordinary day feel beautiful,
+                and having you in my life is something I will always
+                be grateful for. 🤍
+            </p>
+
+            <p>
+                On your special day, I just want you to know that
+                you deserve every beautiful thing life has to offer.
+                Keep smiling, keep shining and always stay the
+                wonderful person you are. ✨
+            </p>
+
+            <p>
+                May this new year of your life bring you countless
+                happy memories, beautiful surprises and dreams
+                coming true. And I hope I get to be there for many
+                more of your birthdays. 🥹
+            </p
+
+            <p>
+                Happiest Birthday, Diyuuuuuuu! 🎂🫶🏻
+                You are truly one of the sweetest parts of my life.
+                I hope today reminds you just how loved and precious
+                you are. 🤍
+            </p>
+
+            <div class="signature">
+                With lots of love,<br>
+                Always yours 
+            </div>
+
+        </div>
+
+        <!-- ENVELOPE -->
+        <div class="envelope-body"></div>
+
+        <!-- FLAP -->
+        <div class="flap"></div>
+
+        <!-- SEAL -->
+        <div class="seal">💙</div>
+
+    </div>
+
+    <button class="open-button" id="openButton" onclick="openLetter()">
+        💌 Tap to Open
+    </button>
+
+    <div class="hint">
+        Something special is waiting inside... 🤍
+    </div>
+
+</div>
+
+<script>
+
+function openLetter() {
+
+    var envelope = document.getElementById("envelope");
+    var button = document.getElementById("openButton");
+
+    envelope.classList.toggle("open");
+
+    if (envelope.classList.contains("open")) {
+        button.innerHTML = "💙 Letter Opened";
+    } else {
+        button.innerHTML = "💌 Tap to Open";
+    }
+}
+
+</script>
+
+</body>
+</html>
+
